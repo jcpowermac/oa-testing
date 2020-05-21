@@ -36,5 +36,5 @@ export OPT_OA_TAG=release-3.11
 ##################################################
 #export OPT_PREP_UPGRADE=True
 #export OPT_PREP_BUILD_VERSION=v3.y.z-1_YYYY-MM-DD.1
-#export OPT_PREP_USE_RHN=True
+export OPT_PREP_USE_RHN=True
 #export OPT_OPS_MIRROR_PATH=/projects/shared-secrets/mirror/ops-mirror.pem

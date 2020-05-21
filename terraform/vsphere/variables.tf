@@ -149,7 +149,16 @@ variable "compute_count" {
   type    = string
   default = "3"
 }
+variable "rhel_infra_count" {
+  type    = string
+  default = "2"
+}
 variable "rhel_compute_count" {
+  type    = string
+  default = "1"
+}
+
+variable "rhel_master_count" {
   type    = string
   default = "3"
 }

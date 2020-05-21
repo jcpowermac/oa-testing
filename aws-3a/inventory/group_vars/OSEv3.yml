@@ -5,10 +5,10 @@ openshift_release: "3.11"
 #openshift_image_tag: "v3.y.z"
 #openshift_pkg_version: -3.y.z
 
-#openshift_disable_check:
+openshift_disable_check:
 #  - package_version
-#  - disk_availability
-#  - memory_availability
+- disk_availability
+- memory_availability
 #  - docker_storage
 #  - docker_image_availability
 openshift_check_min_host_disk_gb: 10
@@ -27,11 +27,33 @@ oreg_auth_user: "{{ ansible_user_id }}"
 oreg_auth_password: "{{ lookup('ini', 'oreg_auth_password section=default file=~/openshift-creds.txt') }}"
 #oreg_auth_credentials_replace: true
 
-openshift_master_cluster_hostname: "{{ groups.lb[0] }}"
+openshift_master_cluster_hostname: "rhel-master-0.jcallen-311.devcluster.openshift.com"
 
 rhn_user: "{{ lookup('ini', 'rhn_user section=default file=~/openshift-creds.txt') }}"
 rhn_pass: "{{ lookup('ini', 'rhn_pass section=default file=~/openshift-creds.txt') }}"
 rhn_pool: "{{ lookup('ini', 'rhn_pool section=default file=~/openshift-creds.txt') }}"
+
+
+openshift_logging_install_logging: false
+openshift_metrics_install_metrics: false
+openshift_metrics_server_install: false
+ansible_service_broker_install: false
+openshift_hosted_prometheus_deploy: false
+openshift_management_install_management: false
+
+openshift_enable_service_catalog: false
+template_service_broker_install: false
+osm_use_cockpit: false
+openshift_install_examples: false
+
+
+openshift_cloudprovider_kind: vsphere
+openshift_cloudprovider_vsphere_username: 'jcallen@e2e.local'
+openshift_cloudprovider_vsphere_password: ''
+openshift_cloudprovider_vsphere_host: vcsa.vmware.devcluster.openshift.com
+openshift_cloudprovider_vsphere_datacenter: dc1
+openshift_cloudprovider_vsphere_datastore: nvme-ds1
+
 
 #openshift_crio_enable_docker_gc: true  # default(false)
 
@@ -50,10 +72,10 @@ rhn_pool: "{{ lookup('ini', 'rhn_pool section=default file=~/openshift-creds.txt
 ## OpenShift Cloud Provider Settings
 # This is needed for the proper install of Ansible Service Broker
 # Used by OpenShift Service Catalog and OpenShift Management
-openshift_cloudprovider_kind: aws
-openshift_clusterid: "{{ lookup('env', 'OPT_CLUSTER_ID') }}"
-openshift_cloudprovider_aws_access_key: "{{ lookup('ini', 'aws_access_key_id section=default file=~/.aws/credentials') }}"
-openshift_cloudprovider_aws_secret_key: "{{ lookup('ini', 'aws_secret_access_key section=default file=~/.aws/credentials') }}"
+#openshift_cloudprovider_kind: aws
+#openshift_clusterid: "{{ lookup('env', 'OPT_CLUSTER_ID') }}"
+#openshift_cloudprovider_aws_access_key: "{{ lookup('ini', 'aws_access_key_id section=default file=~/.aws/credentials') }}"
+#openshift_cloudprovider_aws_secret_key: "{{ lookup('ini', 'aws_secret_access_key section=default file=~/.aws/credentials') }}"
 
 ### Components
 
